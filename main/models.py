@@ -2,6 +2,16 @@ from django.db import models
 from django.conf import settings
 
 
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    company_name = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=20)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
+
 class Service(models.Model):
     name = models.CharField(max_length=255)
     parent_service = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
