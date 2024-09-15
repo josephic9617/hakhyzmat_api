@@ -2,17 +2,23 @@ from rest_framework import serializers
 from . import models
 
 
-class ServicePartialSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Service
-        fields = ('id', 'name', 'get_image', 'description',)
-
 class ServiceSerializer(serializers.ModelSerializer):
-    service = ServicePartialSerializer(read_only=True)
+    subservices = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Service
-        fields = ('id', 'name', 'service', 'description', 'get_image',)
+        fields = ('id', 'name', 'subservices',)
+
+    def get_subservices(self, instance):
+        subservices = instance.service_set.all()
+        serializer = ServiceSerializer(subservices, many=True)
+        return serializer.data
+
+
+class ServiceDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ServiceData
+        fields = ('id', 'name', 'description', 'get_image',)
 
 
 class BrandSerializer(serializers.ModelSerializer):

@@ -3,10 +3,17 @@ from django.conf import settings
 
 
 class Service(models.Model):
-    name = models.CharField(max_length=255, verbose_name="Service name")
-    service = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name="Service", related_name="services", null=True, blank=True)
+    name = models.CharField(max_length=255)
+    parent_service = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class ServiceData(models.Model):
+    name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='services/', null=True, blank=True)
+    parent_service = models.ForeignKey(Service, on_delete=models.CASCADE)
 
     def get_image(self):
         if self.image:
@@ -16,7 +23,6 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Brand(models.Model):
     name = models.CharField(max_length=255, verbose_name='Brand')

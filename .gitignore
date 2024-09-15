@@ -1,0 +1,8 @@
+# Environment files
+.env
+.venv
+env/
+venv/
+ENV/
+ENV.bak/
+venv.bak/
