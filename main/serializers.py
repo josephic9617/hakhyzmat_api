@@ -12,7 +12,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Service
-        fields = ('id', 'name', 'is_root_parent', 'subservices',)
+        fields = ('id', 'name', 'subservices',)
 
     def get_subservices(self, instance):
         subservices = instance.service_set.all()
