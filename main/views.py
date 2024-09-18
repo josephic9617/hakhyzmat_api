@@ -15,7 +15,7 @@ class ContactCreateView(APIView):
 
 
 class ServiceView(generics.ListAPIView):
-    queryset = models.Service.objects.all()
+    queryset = models.Service.objects.all().filter(is_root_parent=True)
     serializer_class = serializers.ServiceSerializer
 
 
