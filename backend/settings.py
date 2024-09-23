@@ -17,9 +17,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-&9f%ze=xkp*(&^4%vr6kjb0=rdb6yr=mzb8zvxma8m&5o%vxh%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [env('ALLOWED_HOST_1'), env('ALLOWED_HOST_2')]
 
 API_URL = env('API_URL')
 
