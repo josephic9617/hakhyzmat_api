@@ -1,5 +1,4 @@
 # Environment files
-.env
 .venv
 env/
 venv/
