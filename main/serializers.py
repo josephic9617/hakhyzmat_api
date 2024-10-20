@@ -29,10 +29,4 @@ class ServiceDataSerializer(serializers.ModelSerializer):
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Brand
-        fields = ('id', 'name', 'get_icon',)
-
-
-class BannerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Banner
-        fields = ('id', 'name', 'description', 'get_image',)
+        fields = ('id', 'brand_name', 'get_brand_icon', 'banner_image', 'banner_name', 'banner_description',)

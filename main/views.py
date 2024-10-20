@@ -29,8 +29,3 @@ class ServiceDataByParentIDView(APIView):
 class BrandView(generics.ListAPIView):
     queryset = models.Brand.objects.all()
     serializer_class = serializers.BrandSerializer
-
-
-class BannerView(generics.ListAPIView):
-    queryset = models.Banner.objects.all()
-    serializer_class = serializers.BannerSerializer
